@@ -56,7 +56,13 @@ const Landing: FC = () => {
       </div>
       <div className="why">
         <h1>Why you should choose us</h1>
-        <WhyContainer></WhyContainer>
+        <WhyContainer className="img_flex">
+            <div>
+                <img src={"/assets/img/why_1.png"} alt="This is the why img1." />
+            </div>
+            <div>1</div>
+            <div>1</div>
+        </WhyContainer>
       </div>
     </div>
   );
@@ -183,8 +189,10 @@ const ServiceStarterText = styled.div`
 `;
 
 const WhyContainer = styled.div`
-    width: 1400px;
-    height: 400px;
-    border: 1px white solid;
-    
+    margin-top: 80px;
+    margin-left: 140px;
+    width: 1300px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
 `;

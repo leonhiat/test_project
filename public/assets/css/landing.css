@@ -61,7 +61,7 @@ body {
 .button_text {
     color: white;
     font-size: 20px;
-    font-family: 'Montserrat';
+    font-family: Montserrat;
     font-weight: '500';
     word-wrap: 'break-word';
     position: absolute;
@@ -83,7 +83,7 @@ body {
     left: 116px;
 }
 
-.why{
+.why {
     background-color: #000;
     width: 100%;
     height: 100vh;
@@ -95,4 +95,22 @@ body {
     font-size: 50px;
     font-family: Montserrat;
     word-wrap: break-word;
+}
+
+.img_flex>div {
+    border: 1px white solid;
+    width: 502px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
+
+.img_flex > div:first-child {
+    margin-right: 50px;
+}
+
+.img_flex > div:last-child {
+    margin-left: 50px;
 }
