@@ -49,19 +49,51 @@ const Landing: FC = () => {
           </ServiceSecondText>
           <ServiceStartButton>
             <ServiceStartBorder>
-                <ServiceStarterText>Get Started</ServiceStarterText>
+              <ServiceStarterText>Get Started</ServiceStarterText>
             </ServiceStartBorder>
           </ServiceStartButton>
         </ServiceContainer>
       </div>
       <div className="why">
-        <h1>Why you should choose us</h1>
+        <WhyHeader>Why you should choose us</WhyHeader>
         <WhyContainer className="img_flex">
-            <div>
-                <img src={"/assets/img/why_1.png"} alt="This is the why img1." />
+          <div>
+            <img
+              src={"/assets/img/why_1.png"}
+              alt="This is the why img1."
+              className="why_img"
+            />
+            <div className="why_img_head">Effective</div>
+            <div className="why_img_text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since
             </div>
-            <div>1</div>
-            <div>1</div>
+          </div>
+          <div>
+            <img
+              src={"/assets/img/why_2.png"}
+              alt="This is the why img2."
+              className="why_img"
+            />
+            <div className="why_img_head">Professional</div>
+            <div className="why_img_text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+            </div>
+          </div>
+          <div>
+            <img
+              src={"/assets/img/why_3.png"}
+              alt="This is the why img3."
+              className="why_img"
+            />
+            <div className="why_img_head">Diverse</div>
+            <div className="why_img_text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+            </div>
+          </div>
         </WhyContainer>
       </div>
     </div>
@@ -104,7 +136,7 @@ const LandingBigText = styled.h1`
   text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
     0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: Montserrat;
-  font-size: 64px;
+  font-size: 52px;
   font-weight: 700;
   width: 800px;
 `;
@@ -158,41 +190,49 @@ const ServiceFirstText = styled.p`
 `;
 
 const ServiceSecondText = styled.p`
-color: #C6C6C6;
-font-size: 20px;
-font-family: Poppins;
-word-wrap: break-word;
+  color: #c6c6c6;
+  font-size: 20px;
+  font-family: Poppins;
+  word-wrap: break-word;
 `;
 
 const ServiceStartButton = styled.div`
-    position: relative;
-    top: 30px;
-    width: 100%;
-    height: 100px;
+  position: relative;
+  top: 30px;
+  width: 100%;
+  height: 100px;
 `;
 
 const ServiceStartBorder = styled.div`
-    width: 239px;
-    height: 55px;
-    border: 1px white solid;
+  width: 239px;
+  height: 55px;
+  border: 1px white solid;
 `;
 
 const ServiceStarterText = styled.div`
-    width: 119px;
-    position: absolute;
-    left: 88px;
-    top: 20px;
-    color: white;
-    font-size: 20;
-    font-family: Montserrat;
-    word-wrap: break-word;
+  width: 119px;
+  position: absolute;
+  left: 88px;
+  top: 20px;
+  color: white;
+  font-size: 20;
+  font-family: Montserrat;
+  word-wrap: break-word;
 `;
 
 const WhyContainer = styled.div`
-    margin-top: 80px;
-    margin-left: 140px;
-    width: 1300px;
-    height: 600px;
-    display: flex;
-    justify-content: center;
+  margin-top: 80px;
+  margin-left: 140px;
+  width: 1300px;
+  height: 600px;
+  display: flex;
 `;
+
+const WhyHeader = styled.div`
+  color: white;
+  font-size: 40px;
+  font-family: Montserrat;
+  font-weight: 700;
+  word-wrap: break-word;
+  text-align: center;
+`
