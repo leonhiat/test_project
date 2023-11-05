@@ -1,68 +1,757 @@
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 320px) {
+    .home_text {
+        width: 100vw;
+        padding: 0px;
+    }
+
+    .big_home_text {
+        width: 100vw;
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Montserrat;
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .small_home_text {
+        text-align: center;
+        width: 100vw;
+        color: #fff;
+        font-family: Poppins;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        word-wrap: break-word;
+    }
+
+    .home_button {
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 120px;
+        height: 50px;
+        margin-left: 100px;
+    }
+
     .button_text {
         color: white;
-        font-size: 18px;
+        font-size: 10px;
         font-family: Montserrat;
-        font-weight: 450;
+        font-weight: 400;
         word-wrap: 'break-word';
-        position: absolute;
-        top: 8px;
-        left: 40px;
+        padding: 16px 0px 10px 32px;
+    }
+
+    .png_services {
+        position: relative;
+        top: 60px;
+        left: 10px;
+        width: 300px;
+        height: 200px;
+    }
+
+    .serviceContainer {
+        position: relative;
+        top: 120px;
+        left: 0;
+        text-align: center;
+        width: 100vw;
+        height: 380px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        gap: 28px;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 30px;
+        font-family: Montserrat;
+        font-weight: 500;
+        word-wrap: break-word;
+        padding-left: 60px;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 12px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 12px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceButton {
+        position: relative;
+        top: 30px;
+        left: 42px;
+        width: 76%;
+        height: 100px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
+        color: white;
+        font-size: 20;
+        font-family: Montserrat;
+        word-wrap: break-word;
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 375px) {
+    .home_text {
+        width: 100vw;
+        padding: 0px;
+    }
+
+    .big_home_text {
+        width: 100vw;
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Montserrat;
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .small_home_text {
+        text-align: center;
+        width: 100vw;
+        color: #fff;
+        font-family: Poppins;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        word-wrap: break-word;
+    }
+
+    .home_button {
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 120px;
+        height: 50px;
+        margin-left: 100px;
+    }
+
+    .button_text {
+        color: white;
+        font-size: 10px;
+        font-family: Montserrat;
+        font-weight: 400;
+        word-wrap: 'break-word';
+        padding: 16px 0px 10px 32px;
+    }
+
+    .png_services {
+        position: relative;
+        top: 60px;
+        left: 40px;
+        width: 300px;
+        height: 200px;
+    }
+
+    .serviceContainer {
+        position: relative;
+        top: 120px;
+        left: 0;
+        text-align: center;
+        width: 100vw;
+        height: 380px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        gap: 28px;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 30px;
+        font-family: Montserrat;
+        font-weight: 500;
+        word-wrap: break-word;
+        padding-left: 90px;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 14px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 14px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceButton {
+        position: relative;
+        top: 30px;
+        left: 68px;
+        width: 76%;
+        height: 100px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
+        color: white;
+        font-size: 20;
+        font-family: Montserrat;
+        word-wrap: break-word;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .home_text {
+        width: 100vw;
+        padding: 0px;
+    }
+
+    .big_home_text {
+        width: 100vw;
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Montserrat;
+        font-size: 36px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .small_home_text {
+        text-align: center;
+        width: 100vw;
+        color: #fff;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        word-wrap: break-word;
+    }
+
+    .home_button {
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 160px;
+        height: 70px;
+        margin-left: 100px;
+    }
+
     .button_text {
         color: white;
         font-size: 16px;
         font-family: Montserrat;
         font-weight: 400;
         word-wrap: 'break-word';
-        position: absolute;
-        top: 7px;
-        left: 35px;
+        padding: 22px 0px 10px 36px;
+    }
+
+    .png_services {
+        position: relative;
+        top: 40px;
+        left: 90px;
+        width: 300px;
+        height: 270px;
+    }
+
+    .serviceContainer {
+        position: relative;
+        top: 80px;
+        left: 0;
+        text-align: center;
+        width: 100vw;
+        height: 380px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        gap: 28px;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 40px;
+        font-family: Montserrat;
+        font-weight: 500;
+        word-wrap: break-word;
+        padding-left: 92px;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 16px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 16px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceButton {
+        position: relative;
+        top: 0;
+        left: 92px;
+        width: 76%;
+        height: 100px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
+        color: white;
+        font-size: 20;
+        font-family: Montserrat;
+        word-wrap: break-word;
     }
 }
 
-@media screen and (max-width: 600px) {
-    .button_text {
-        color: white;
-        font-size: 13px;
+@media screen and (min-width: 768px) {
+    .home {
+        background-image: url('/assets/img/landing.png');
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .home_text {
+        position: absolute;
+        top: 260px;
+        left: 0;
+        padding: 0px 50px 0px 100px;
+        width: 80%;
+    }
+
+    .big_home_text {
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
         font-family: Montserrat;
+        font-size: 44px;
+        font-weight: 700;
+        width: 96%;
+        margin-bottom: 30px;
+        text-align: initial;
+    }
+
+    .small_home_text {
+        color: #fff;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
         font-weight: 400;
+        line-height: 36px;
+        width: 600px;
+        margin-bottom: 40px;
+        text-align: initial;
+    }
+
+    .home_button {
+        width: 220px;
+        height: 95px;
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+    }
+
+    .button_text {
+        color: white;
+        font-size: 20px;
+        font-family: Montserrat;
+        font-weight: 500;
         word-wrap: 'break-word';
-        position: absolute;
-        top: 4px;
-        left: 30px;
+        padding: 30px 0px 20px 50px;
+    }
+
+    .cover_home {
+        background: linear-gradient(183deg, rgba(0, 0, 0, 0.00) 2.86%, #000 113.36%);
+        width: 100%;
+        height: 100vh;
+    }
+
+    .png_services {
+        position: relative;
+        top: 40px;
+        left: 140px;
+        width: 540px;
+        height: 270px;
+    }
+
+    .serviceContainer {
+        position: relative;
+        top: 80px;
+        left: 0;
+        width: 100vw;
+        height: 380px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        text-align: initial;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 40px;
+        font-family: Montserrat;
+        font-weight: 500;
+        word-wrap: break-word;
+        margin-left: -40px;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 24px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+        margin-left: 40px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 24px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+        margin-left: 40px;
+    }
+
+    .serviceButton {
+        position: relative;
+        top: 0;
+        left: 0px;
+        width: 76%;
+        margin-left: 40px;
+        height: 100px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
+        color: white;
+        font-size: 24px;
+        font-family: Montserrat;
+        word-wrap: break-word;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 10px 0px 28px 56px;
     }
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (min-width: 1024px) {
+    .home {
+        background-image: url('/assets/img/landing.png');
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .home_text {
+        position: absolute;
+        top: 260px;
+        left: 0;
+        padding: 0px 50px 0px 100px;
+        width: 80%;
+    }
+
+    .big_home_text {
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Montserrat;
+        font-size: 52px;
+        font-weight: 700;
+        width: 800px;
+        margin-bottom: 30px;
+    }
+
+    .small_home_text {
+        color: #fff;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        width: 600px;
+        margin-bottom: 40px;
+    }
+
+    .home_button {
+        width: 220px;
+        height: 95px;
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
     .button_text {
         color: white;
-        font-size: 10px;
+        font-size: 20px;
         font-family: Montserrat;
-        font-weight: 300;
+        font-weight: 500;
         word-wrap: 'break-word';
+        padding: 30px 0px 20px 50px;
+    }
+
+    .cover_home {
+        background: linear-gradient(183deg, rgba(0, 0, 0, 0.00) 2.86%, #000 113.36%);
+        width: 100%;
+        height: 100vh;
+    }
+
+    .png_services {
+        position: relative;
+        top: 100px;
+        left: 80px;
+        width: 392px;
+        height: 600px;
+    }
+
+    .serviceContainer {
         position: absolute;
-        top: 5px;
-        left: 24px;
+        top: 900px;
+        left: 580px;
+        width: 40%;
+        height: 600px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        text-align: initial;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 40px;
+        font-family: Montserrat;
+        font-weight: 500;
+        word-wrap: break-word;
+        margin-left: -92px;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 24px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+        margin-left: 0px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 24px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+        margin-left: 0;
+    }
+
+    .serviceButton {
+        position: relative;
+        top: 0;
+        left: 0px;
+        width: 76%;
+        margin-left: 0;
+        height: 100px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
+        color: white;
+        font-size: 24px;
+        font-family: Montserrat;
+        word-wrap: break-word;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 10px 0px 28px 56px;
     }
 }
 
-@media screen and (max-width: 430px) {}
+@media screen and (min-width: 1400px) {
+    .home {
+        background-image: url('/assets/img/landing.png');
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
-@media screen and (max-width: 380px) {
+    .home_text {
+        position: absolute;
+        top: 260px;
+        left: 0;
+        padding: 0px 50px 0px 100px;
+        width: 80%;
+    }
+
+    .big_home_text {
+        color: #fff;
+        text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+            0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Montserrat;
+        font-size: 52px;
+        font-weight: 700;
+        width: 800px;
+        margin-bottom: 30px;
+    }
+
+    .small_home_text {
+        color: #fff;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        width: 600px;
+        margin-bottom: 40px;
+    }
+
+    .home_button {
+        width: 220px;
+        height: 95px;
+        background: url("/assets/img/landing_start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
     .button_text {
         color: white;
-        font-size: 8px;
+        font-size: 20px;
         font-family: Montserrat;
-        font-weight: 300;
+        font-weight: 500;
         word-wrap: 'break-word';
+        padding: 30px 0px 20px 50px;
+    }
+
+    .cover_home {
+        background: linear-gradient(183deg, rgba(0, 0, 0, 0.00) 2.86%, #000 113.36%);
+        width: 100%;
+        height: 100vh;
+    }
+
+    .png_services {
+        width: 560px;
+        height: 480px;
+        position: relative;
+        top: 180px;
+        left: 116px;
+    }
+
+    .serviceContainer {
+        width: 40%;
+        height: 380px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+        position: relative;
+        top: -244px;
+        left: 220px;
+        gap: 28px;
+    }
+
+    .serviceHeader {
+        color: white;
+        font-size: 52px;
+        font-family: Montserrat;
+        font-weight: 700;
+        word-wrap: break-word;
+    }
+
+    .serviceFirst {
+        color: #c6c6c6;
+        font-size: 22px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceSecond {
+        color: #c6c6c6;
+        font-size: 22px;
+        font-family: Poppins;
+        word-wrap: break-word;
+        line-height: 28px;
+    }
+
+    .serviceButtonBorder {
+        width: 239px;
+        height: 55px;
+        border: 1px white solid;
+    }
+
+    .serviceButtonText {
         position: absolute;
+        left: 9px;
         top: 3px;
-        left: 20px;
+        color: white;
+        font-size: 20;
+        font-family: Montserrat;
+        word-wrap: break-word;
     }
 }
-
-@media screen and (max-width: 340px) {}

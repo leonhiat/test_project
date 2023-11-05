@@ -12,45 +12,49 @@ const Landing: FC = () => {
         <div className="cover_home">
           <Header />
         </div>
-        <LandingBigText className="big_home_text">
-          Phoniex Security Service
-        </LandingBigText>
-        <LandingSmallText className="small_home_text">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an
-        </LandingSmallText>
-        <ButtonStart>
-          <p className="button_text">Get Started</p>
-        </ButtonStart>
+        <div className="home_text">
+          <div className="big_home_text">
+            Phoniex Security Service
+          </div>
+          <div className="small_home_text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s, when an
+          </div>
+          <div className="home_button">
+            <p className="button_text">Get Started</p>
+          </div>
+        </div>
       </div>
-      {/* <div className="our_services" id="services">
+
+      <div className="our_services" id="services">
         <img
           src={"/assets/img/security.png"}
           alt="this is the services png"
           className="png_services"
         />
-        <ServiceContainer>
-          <ServiceHeader>Our Services</ServiceHeader>
-          <ServiceFirstText>
+        <div className="serviceContainer">
+          <div className="serviceHeader">Our Services</div>
+          <div className="serviceFirst">
             Ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since
             the 1500s, when an unknown printer took a galley of type and
             scrambled it to make a type specimen book.
-          </ServiceFirstText>
-          <ServiceSecondText>
+          </div>
+          <div className="serviceSecond">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book.
-          </ServiceSecondText>
-          <ServiceStartButton>
-            <ServiceStartBorder>
-              <ServiceStarterText>Get Started</ServiceStarterText>
-            </ServiceStartBorder>
-          </ServiceStartButton>
-        </ServiceContainer>
+          </div>
+          <div className="serviceButton">
+            <div className="serviceButtonBorder">
+              <div className="serviceButtonText">Get Started</div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className="why">
         <WhyHeader>Why you should choose us</WhyHeader>
         <WhyContainer className="img_flex">
@@ -93,7 +97,8 @@ const Landing: FC = () => {
           </div>
         </WhyContainer>
       </div>
-      <div className="about" id="about">
+      
+      {/* <div className="about" id="about">
         <div className="about_container">
           <div className="text_container">
             <div className="text_container_header">About Us</div>
@@ -500,306 +505,6 @@ const Landing: FC = () => {
 };
 
 export default Landing;
-
-const LandingBigText = styled.h1`
-  position: absolute;
-  top: 200px;
-  left: 119px;
-  color: #fff;
-  text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-    0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: Montserrat;
-  font-size: 52px;
-  font-weight: 700;
-  width: 800px;
-  @media screen and (max-width: 1200px) {
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 40px;
-    font-weight: 600;
-    width: 600px;
-    position: absolute;
-    top: 220px;
-    left: 119px;
-  }
-  @media screen and (max-width: 1000px) {
-    position: absolute;
-    top: 232px;
-    left: 119px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 30px;
-    font-weight: 600;
-    width: 400px;
-  }
-  @media screen and (max-width: 600px) {
-    position: absolute;
-    top: 240px;
-    left: 119px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 25px;
-    font-weight: 600;
-    width: 350px;
-  }
-  @media screen and (max-width: 470px) {
-    position: absolute;
-    top: 252px;
-    left: 119px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: 600;
-    width: 300px;
-  }
-  @media screen and (max-width: 430px) {
-    position: absolute;
-    top: 252px;
-    left: 88px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: 600;
-    width: 300px;
-  }
-  @media screen and (max-width: 380px) {
-    position: absolute;
-    top: 272px;
-    left: 88px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: 550;
-    width: 240px;
-  }
-  @media screen and (max-width: 340px) {
-    position: absolute;
-    top: 280px;
-    left: 66px;
-    color: #fff;
-    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-family: Montserrat;
-    font-size: 15px;
-    font-weight: 550;
-    width: 200px;
-  }
-`;
-
-const LandingSmallText = styled.p`
-  position: absolute;
-  top: 300px;
-  left: 119px;
-  color: #fff;
-  font-family: Poppins;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 36px;
-  width: 600px;
-  @media screen and (max-width: 1200px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 36px;
-    width: 500px;
-  }
-  @media screen and (max-width: 1000px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 36px;
-    width: 400px;
-  }
-  @media screen and (max-width: 600px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 36px;
-    width: 300px;
-  }
-  @media screen and (max-width: 470px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 36px;
-    width: 250px;
-  }
-  @media screen and (max-width: 430px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 36px;
-    width: 250px;
-    position: absolute;
-    top: 300px;
-    left: 88px;
-  }
-  @media screen and (max-width: 380px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 150;
-    line-height: 36px;
-    width: 200px;
-    position: absolute;
-    top: 320px;
-    left: 88px;
-  }
-  @media screen and (max-width: 340px) {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 150;
-    line-height: 36px;
-    width: 200px;
-    position: absolute;
-    top: 328px;
-    left: 66px;
-  }
-`;
-
-const ButtonStart = styled.div`
-  width: 220px;
-  height: 95px;
-  background: url("/assets/img/landing_start.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: absolute;
-  top: 465px;
-  left: 119px;
-  @media screen and (max-width: 1200px) {
-    width: 180px;
-    height: 80px;
-    position: absolute;
-    top: 460px;
-    left: 119px;
-  }
-  @media screen and (max-width: 1000px) {
-    width: 160px;
-    height: 70px;
-    position: absolute;
-    top: 456px;
-    left: 119px;
-  }
-  @media screen and (max-width: 600px) {
-    width: 130px;
-    height: 55px;
-    position: absolute;
-    top: 452px;
-    left: 119px;
-  }
-  @media screen and (max-width: 470px) {
-    width: 100px;
-    height: 45px;
-    position: absolute;
-    top: 440px;
-    left: 119px;
-  }
-  @media screen and (max-width: 430px) {
-    width: 100px;
-    height: 45px;
-    position: absolute;
-    top: 440px;
-    left: 88px;
-  }
-  @media screen and (max-width: 380px) {
-    width: 80px;
-    height: 35px;
-    position: absolute;
-    top: 460px;
-    left: 88px;
-  }
-  @media screen and (max-width: 340px) {
-    position: absolute;
-    top: 468px;
-    left: 66px;
-  }
-`;
-
-const ServiceContainer = styled.div`
-  width: 640px;
-  height: 380px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-  position: relative;
-  top: -270px;
-  left: 220px;
-`;
-
-const ServiceHeader = styled.h1`
-  color: white;
-  font-size: 40px;
-  font-family: Montserrat;
-  font-weight: 700;
-  word-wrap: break-word;
-`;
-
-const ServiceFirstText = styled.p`
-  color: #c6c6c6;
-  font-size: 20px;
-  font-family: Poppins;
-  word-wrap: break-word;
-  width: 640px;
-`;
-
-const ServiceSecondText = styled.p`
-  color: #c6c6c6;
-  font-size: 20px;
-  font-family: Poppins;
-  word-wrap: break-word;
-`;
-
-const ServiceStartButton = styled.div`
-  position: relative;
-  top: 30px;
-  width: 100%;
-  height: 100px;
-`;
-
-const ServiceStartBorder = styled.div`
-  width: 239px;
-  height: 55px;
-  border: 1px white solid;
-`;
-
-const ServiceStarterText = styled.div`
-  width: 119px;
-  position: absolute;
-  left: 88px;
-  top: 20px;
-  color: white;
-  font-size: 20;
-  font-family: Montserrat;
-  word-wrap: break-word;
-`;
 
 const WhyContainer = styled.div`
   margin-top: 80px;

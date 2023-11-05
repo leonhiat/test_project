@@ -140,7 +140,7 @@ const Header: FC = () => {
                             component="a"
                             href="#"
                             sx={{
-                                mr: 7,
+                                mr: 6,
                                 textAlign: "center",
                                 color: "white",
                                 fontSize: 14,
