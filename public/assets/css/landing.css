@@ -151,19 +151,28 @@ body {
     height: 100vh;
 }
 
-.why h1 {
-    text-align: center;
+.whyHeader {
     color: white;
-    font-size: 50px;
+    font-size: 40px;
     font-family: Montserrat;
+    font-weight: 700;
     word-wrap: break-word;
+    text-align: center;
+}
+
+.img_flex {
+    /* margin-top: 80px;
+    margin-right: 80px;
+    margin-left: 80px; */
+    width: 90%;
+    height: 600px;
+    display: flex;
 }
 
 .img_flex>div {
-    width: 502px;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 30px;
+    width: 100%;
+    position: relative;
+    left: -100px;
 }
 
 .img_flex>div:first-child {
@@ -197,7 +206,6 @@ body {
     font-family: 'Poppins';
     word-wrap: break-word;
     padding: 0;
-    text-align: justify;
 }
 
 .about {

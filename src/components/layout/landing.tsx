@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Header from "./header";
 
-import styled from "styled-components";
-
 const Landing: FC = () => {
   return (
     <div className="landing">
@@ -56,8 +54,8 @@ const Landing: FC = () => {
       </div>
 
       <div className="why">
-        <WhyHeader>Why you should choose us</WhyHeader>
-        <WhyContainer className="img_flex">
+        <div className="whyHeader">Why you should choose us</div>
+        <div className="img_flex">
           <div>
             <img
               src={"/assets/img/why_1.png"}
@@ -95,9 +93,9 @@ const Landing: FC = () => {
               industry. Lorem Ipsum has been the industry's standard dummy text
             </div>
           </div>
-        </WhyContainer>
+        </div>
       </div>
-      
+
       {/* <div className="about" id="about">
         <div className="about_container">
           <div className="text_container">
@@ -505,20 +503,3 @@ const Landing: FC = () => {
 };
 
 export default Landing;
-
-const WhyContainer = styled.div`
-  margin-top: 80px;
-  margin-left: 140px;
-  width: 1300px;
-  height: 600px;
-  display: flex;
-`;
-
-const WhyHeader = styled.div`
-  color: white;
-  font-size: 40px;
-  font-family: Montserrat;
-  font-weight: 700;
-  word-wrap: break-word;
-  text-align: center;
-`;
