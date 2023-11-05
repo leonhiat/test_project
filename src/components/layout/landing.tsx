@@ -1,22 +1,17 @@
 import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Header from "./header";
 
 import styled from "styled-components";
 
 const Landing: FC = () => {
   return (
     <div className="landing">
-      <div className="home">
-        <div className="cover_home"></div>
-        <LogoText className="logo_text">LOGO</LogoText>
-        <Navbar className="navbar">
-          <nav className="nav_text">Home</nav>
-          <nav className="nav_text">Our Services</nav>
-          <nav className="nav_text">About Us</nav>
-          <nav className="nav_text">Contact Us</nav>
-        </Navbar>
-        <SignInText className="signIn_text">Sign In</SignInText>
+      <div className="home" id="home">
+        <div className="cover_home">
+          <Header />
+        </div>
         <LandingBigText className="big_home_text">
           Phoniex Security Service
         </LandingBigText>
@@ -29,7 +24,7 @@ const Landing: FC = () => {
           <p className="button_text">Get Started</p>
         </ButtonStart>
       </div>
-      <div className="our_services">
+      {/* <div className="our_services" id="services">
         <img
           src={"/assets/img/security.png"}
           alt="this is the services png"
@@ -98,7 +93,7 @@ const Landing: FC = () => {
           </div>
         </WhyContainer>
       </div>
-      <div className="about">
+      <div className="about" id="about">
         <div className="about_container">
           <div className="text_container">
             <div className="text_container_header">About Us</div>
@@ -338,7 +333,7 @@ const Landing: FC = () => {
           </div>
         </div>
       </div>
-      <div className="contact">
+      <div className="contact" id="contact">
         <div className="contact_container">
           <div className="contact_text_header">Contact Us</div>
           <div className="contact_text_container">
@@ -499,43 +494,17 @@ const Landing: FC = () => {
           <div className="line"></div>
           <div className="text7">All rights @ 2023</div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
 export default Landing;
 
-const LogoText = styled.h1`
-  color: #fff;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-`;
-
-const Navbar = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 32px;
-  color: white;
-  font-weight: 500;
-  line-weight: 5000;
-  line-height: normal;
-`;
-
-const SignInText = styled.p`
-  color: #fff;
-  text-align: center;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-`;
-
 const LandingBigText = styled.h1`
+  position: absolute;
+  top: 200px;
+  left: 119px;
   color: #fff;
   text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
     0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -543,9 +512,96 @@ const LandingBigText = styled.h1`
   font-size: 52px;
   font-weight: 700;
   width: 800px;
+  @media screen and (max-width: 1200px) {
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 600;
+    width: 600px;
+    position: absolute;
+    top: 220px;
+    left: 119px;
+  }
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    top: 232px;
+    left: 119px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 600;
+    width: 400px;
+  }
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: 240px;
+    left: 119px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 25px;
+    font-weight: 600;
+    width: 350px;
+  }
+  @media screen and (max-width: 470px) {
+    position: absolute;
+    top: 252px;
+    left: 119px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    width: 300px;
+  }
+  @media screen and (max-width: 430px) {
+    position: absolute;
+    top: 252px;
+    left: 88px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    width: 300px;
+  }
+  @media screen and (max-width: 380px) {
+    position: absolute;
+    top: 272px;
+    left: 88px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 550;
+    width: 240px;
+  }
+  @media screen and (max-width: 340px) {
+    position: absolute;
+    top: 280px;
+    left: 66px;
+    color: #fff;
+    text-shadow: 0px 5px 20px rgba(255, 255, 255, 0.5),
+      0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 550;
+    width: 200px;
+  }
 `;
 
 const LandingSmallText = styled.p`
+  position: absolute;
+  top: 300px;
+  left: 119px;
   color: #fff;
   font-family: Poppins;
   font-size: 20px;
@@ -553,6 +609,78 @@ const LandingSmallText = styled.p`
   font-weight: 400;
   line-height: 36px;
   width: 600px;
+  @media screen and (max-width: 1200px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    width: 500px;
+  }
+  @media screen and (max-width: 1000px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    width: 400px;
+  }
+  @media screen and (max-width: 600px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    width: 300px;
+  }
+  @media screen and (max-width: 470px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 36px;
+    width: 250px;
+  }
+  @media screen and (max-width: 430px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 36px;
+    width: 250px;
+    position: absolute;
+    top: 300px;
+    left: 88px;
+  }
+  @media screen and (max-width: 380px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 150;
+    line-height: 36px;
+    width: 200px;
+    position: absolute;
+    top: 320px;
+    left: 88px;
+  }
+  @media screen and (max-width: 340px) {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 150;
+    line-height: 36px;
+    width: 200px;
+    position: absolute;
+    top: 328px;
+    left: 66px;
+  }
 `;
 
 const ButtonStart = styled.div`
@@ -560,9 +688,58 @@ const ButtonStart = styled.div`
   height: 95px;
   background: url("/assets/img/landing_start.png");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   position: absolute;
-  top: 488px;
+  top: 465px;
   left: 119px;
+  @media screen and (max-width: 1200px) {
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    top: 460px;
+    left: 119px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 160px;
+    height: 70px;
+    position: absolute;
+    top: 456px;
+    left: 119px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 130px;
+    height: 55px;
+    position: absolute;
+    top: 452px;
+    left: 119px;
+  }
+  @media screen and (max-width: 470px) {
+    width: 100px;
+    height: 45px;
+    position: absolute;
+    top: 440px;
+    left: 119px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100px;
+    height: 45px;
+    position: absolute;
+    top: 440px;
+    left: 88px;
+  }
+  @media screen and (max-width: 380px) {
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 460px;
+    left: 88px;
+  }
+  @media screen and (max-width: 340px) {
+    position: absolute;
+    top: 468px;
+    left: 66px;
+  }
 `;
 
 const ServiceContainer = styled.div`

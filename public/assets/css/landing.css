@@ -3,6 +3,10 @@ body {
     background-color: #000;
 }
 
+* {
+    scroll-behavior: smooth;
+}
+
 .home {
     background-image: url('/assets/img/landing.png');
     width: 100%;
@@ -18,46 +22,6 @@ body {
     height: 100%;
 }
 
-.logo_text {
-    position: absolute;
-    top: 30px;
-    left: 111px;
-}
-
-.nav_text {
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 19px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-.navbar {
-    position: absolute;
-    top: 72px;
-    left: 315px;
-}
-
-.signIn_text {
-    position: absolute;
-    top: 52px;
-    right: 116px;
-}
-
-.big_home_text {
-    position: absolute;
-    top: 200px;
-    left: 119px;
-}
-
-.small_home_text {
-    position: absolute;
-    top: 324px;
-    left: 119px;
-}
-
 .button_text {
     color: white;
     font-size: 20px;
@@ -65,8 +29,8 @@ body {
     font-weight: 500;
     word-wrap: 'break-word';
     position: absolute;
-    top: 5px;
-    left: 36px;
+    top: 10px;
+    left: 52px;
 }
 
 .our_services {
@@ -684,6 +648,6 @@ body {
     border-color: white !important;
 }
 
-.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root{
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
     color: white !important;
 }
