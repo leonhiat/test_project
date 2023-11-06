@@ -215,8 +215,8 @@ body {
 }
 
 .about_container {
-    position: relative;
-    top: 150px;
+    /* position: relative;
+    top: 150px; */
     margin-left: 157px;
     width: 1302px;
     height: 507px;
@@ -242,7 +242,7 @@ body {
 }
 
 .text_container_text1 {
-    width: 580px;
+    width: 100%;
     color: #C6C6C6;
     font-family: Poppins;
     font-size: 20px;
@@ -252,7 +252,7 @@ body {
 }
 
 .text_container_text2 {
-    width: 580px;
+    width: 100%;
     color: #C6C6C6;
     font-family: Poppins;
     font-size: 20px;
@@ -263,124 +263,103 @@ body {
 }
 
 .png_about {
-    width: 624px;
-    margin-left: 100px;
+    width: 50% !important;
 }
 
 .clients {
+    position: relative;
+    top: 800px;
     width: 100%;
     height: 100vh;
     background-color: #000;
 }
 
-.clients_header {
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.clients_head {
+    color: #FFF !important;
+    text-align: center !important;
+    font-family: Montserrat !important;
+    font-size: 50px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: normal !important;
 }
 
-.client3 {
-    margin-left: 555px;
-    margin-top: -400px;
-    width: 500px;
-    height: 500px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: #121212;
-    box-shadow: 0px 0px 50px 0px rgba(255, 255, 255, 0.50);
-    z-index: 9;
-}
-
-.png_client3 {
-    margin-top: 65px;
-    margin-left: 170px;
-    width: 150px;
-    height: 150px;
-    flex-shrink: 0;
-}
-
-.png_client3+.stars {
-    margin-top: 21px;
-    margin-left: 170px;
-    width: 150px;
-    height: 30px;
-    flex-shrink: 0;
-}
-
-.client_say {
-    width: 400px;
-    color: #FFF;
-    font-family: Poppins;
-    font-size: 15px;
-    font-style: normal;
-    line-height: 36px;
-    /* 163.636% */
-    margin-top: 30px;
-    margin-left: 59px;
+.clients_container {
+    margin-top: 50px !important;
+    display: flex !important;
+    flex-direction: initial !important;
+    justify-content: center !important;
+    width: 80% !important;
+    height: 80vh !important;
+    margin-left: 160px !important;
+    margin-right: 160px !important;
 }
 
 .client1 {
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: rgba(18, 18, 18, 0.96);
-    box-shadow: 0px 0px 50px 0px rgba(255, 255, 255, 0.50);
-    margin-left: 300px;
-    margin-top: 200px;
-    z-index: 99 !important;
+    width: 30% !important;
+    flex-shrink: 0 !important;
+    margin: 140px 0px 140px 0px !important;
+    border-radius: 10px !important;
+    background: rgba(18, 18, 18, 0.96) !important;
+    box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.50) !important;
 }
 
 .client2 {
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: rgba(18, 18, 18, 0.96);
-    box-shadow: 0px 0px 50px 0px rgba(255, 255, 255, 0.50);
-    margin-top: -300px;
-    margin-left: 1020px;
+    width: 30% !important; 
+    flex-shrink: 0 !important;
+    margin: 140px 0px 140px 0px !important; 
+    border-radius: 10px !important;
+    background: rgba(18, 18, 18, 0.96) !important;
+    box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.50) !important;
+    transform: scale(1.3) !important;
 }
 
-
-.png_client1 {
-    width: 180px;
-    height: 180px;
-    margin-top: 30px;
-    margin-left: 60px;
+.client3 {
+    width: 30% !important;
+    flex-shrink: 0 !important;
+    margin: 140px 0px 140px 0px !important;
+    border-radius: 10px !important;
+    background: rgba(18, 18, 18, 0.96) !important;
+    box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.50) !important;
 }
 
-.png_client1+.stars {
-    width: 160px;
-    height: 32px;
-    flex-shrink: 0;
-    margin-top: 18px;
-    margin-left: 70px;
+.bothPng {
+    width: 60% !important;
+    margin: 20px 70px 20px 70px !important;
 }
 
 .png_client2 {
-    width: 180px;
-    height: 180px;
-    margin-top: 30px;
-    margin-left: 70px;
+    width: 36% !important;
+    margin: 20px 116px 10px 116px !important;
 }
 
-.png_client2+.stars {
-    width: 160px;
-    height: 32px;
-    flex-shrink: 0;
-    margin-top: 18px;
-    margin-left: 70px;
+.star_container {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.star_container>img {
+    width: 10% !important;
+}
+
+.client_text {
+    width: 90% !important;
+    margin: 20px 17px 0px 17px !important;
+    color: #FFF !important;
+    font-family: Poppins !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 20px !important;
+    text-align: justify !important;
 }
 
 .contact {
     width: 100%;
     height: 100vh;
     background-color: #000;
+    position: relative;
+    top: 800px;
 }
 
 .contact_container {
@@ -389,6 +368,7 @@ body {
     margin-left: 157px;
     width: 1302px;
     height: 502px;
+    display: flex;
 }
 
 .contact_text_container {
@@ -399,8 +379,10 @@ body {
 }
 
 .contact_text_header {
+    position: relative;
+    top: 200px;
+    margin-left: 160px;
     color: #FFF;
-    text-align: left;
     font-family: Montserrat;
     font-size: 50px;
     font-style: normal;
@@ -430,7 +412,7 @@ body {
     width: 206px;
     height: 39px;
     position: absolute;
-    top: 116px;
+    top: 48px;
     left: 64px;
     color: #FFF;
     text-align: center;
@@ -468,7 +450,7 @@ body {
     width: 106px;
     height: 39px;
     position: absolute;
-    top: 248px;
+    top: 180px;
     left: 64px;
     color: #FFF;
     text-align: center;
@@ -496,7 +478,7 @@ body {
 
 .text5 {
     position: absolute;
-    top: 384px;
+    top: 316px;
     left: 64px;
     width: 95px;
     height: 39px;
@@ -527,7 +509,7 @@ body {
 .group_container {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 00px;
     width: 600px;
     height: 520px;
     flex-shrink: 0;
