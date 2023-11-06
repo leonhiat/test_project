@@ -1,4 +1,7 @@
 import React, { FC } from "react";
+
+import { Link } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -58,7 +61,7 @@ const Header: FC = () => {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon sx={{color: "white"}} />
+                            <MenuIcon sx={{ color: "white" }} />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -135,24 +138,24 @@ const Header: FC = () => {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Typography
-                            component="a"
-                            href="#"
-                            sx={{
-                                mr: 6,
-                                textAlign: "center",
-                                color: "white",
-                                fontSize: 14,
-                                fontFamily: "Inter",
-                                fontWeight: "500",
-                                wordWrap: "break-word",
-                                textDecoration: "none",
-                            }}
-                        >
-                            Sign In
-                        </Typography>
-                    </Box>
+                    <Link to="/singIn">
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Typography
+                                sx={{
+                                    mr: 6,
+                                    textAlign: "center",
+                                    color: "white",
+                                    fontSize: 14,
+                                    fontFamily: "Inter",
+                                    fontWeight: "500",
+                                    wordWrap: "break-word",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                Sign In
+                            </Typography>
+                        </Box>
+                    </Link>
                 </Toolbar>
             </Container>
         </AppBar>

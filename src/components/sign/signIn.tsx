@@ -1,11 +1,24 @@
 import React from 'react';
 
-const SignIn : React.FC = () => {
+import styled from "styled-components";
+
+const SignIn: React.FC = () => {
     return (
-        <div>
-            Hello!
+        <div className='signIn'>
+            <SignInBox>
+                Hello!
+            </SignInBox>
         </div>
     );
 }
 
 export default SignIn;
+
+const SignInBox = styled.div`
+    background-image: url('/assets/img/landing.png');
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+`

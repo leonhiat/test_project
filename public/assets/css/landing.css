@@ -305,9 +305,9 @@ body {
 }
 
 .client2 {
-    width: 30% !important; 
+    width: 30% !important;
     flex-shrink: 0 !important;
-    margin: 140px 0px 140px 0px !important; 
+    margin: 140px 0px 140px 0px !important;
     border-radius: 10px !important;
     background: rgba(18, 18, 18, 0.96) !important;
     box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.50) !important;
@@ -366,7 +366,7 @@ body {
     position: relative;
     top: 200px;
     margin-left: 157px;
-    width: 1302px;
+    width: 80%;
     height: 502px;
     display: flex;
 }
@@ -509,8 +509,8 @@ body {
 .group_container {
     position: absolute;
     top: 0;
-    left: 00px;
-    width: 600px;
+    left: 600px;
+    width: 50%;
     height: 520px;
     flex-shrink: 0;
 }
@@ -523,6 +523,8 @@ body {
     width: 100%;
     height: 680px;
     flex-shrink: 0;
+    position: relative;
+    top: 800px;
 }
 
 .cover_footer {
@@ -532,22 +534,27 @@ body {
     background: linear-gradient(180deg, #000 -2.79%, rgba(17, 17, 17, 0.00) 100%);
 }
 
-.footer_png {
-    width: 200px;
-    height: 232.107px;
-    flex-shrink: 0;
+.footer_container {
     position: relative;
-    top: 180px;
-    left: 240px;
+    top: -600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_png {
+    width: 10%;
+    margin-top: 200px;
+    margin-right: 140px;
 }
 
 .footer_navbar {
-    position: absolute;
-    top: 4832px;
-    left: 600px;
-    width: 212px;
+    position: relative;
+    top: 100px;
+    left: 0;
+    width: 30%;
     height: 323px;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -556,7 +563,6 @@ body {
 
 .footer_navbar>div {
     color: #FFF;
-    text-align: center;
     font-family: Montserrat;
     font-size: 32px;
     font-style: normal;
@@ -565,9 +571,8 @@ body {
 }
 
 .footer_text_container {
-    position: absolute;
-    top: 4820px;
-    right: 200px;
+    position: relative;
+    top: 100px;
 }
 
 .footer_group3 {
@@ -687,16 +692,16 @@ body {
 }
 
 .footer_decoration {
-    position: absolute;
-    top: 5264px;
-    left: 136px;
-    width: 1274px;
+    position: relative;
+    top: -460PX;
+    left: 160PX;
+    width: 80%;
     height: 56px;
     flex-shrink: 0;
 }
 
 .line {
-    width: 1274px;
+    width: 100%;
     height: 1px;
     background: #FFF;
 }
