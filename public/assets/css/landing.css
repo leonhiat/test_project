@@ -17,47 +17,20 @@ a {
 }
 
 
-.Secondpart img {
+.png_second {
     display: block;
     content: url("../img/security.png");
     width: 100%;
-    height: auto;
     object-fit: cover;
     object-position: center;
     border-radius: 30px;
     margin: 0 auto;
 }
 
-h2 {
-    font-family: Montserrat;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-p {
-    font-family: Poppins;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 36px;
-}
-
-.Secondpart p,
-.Fourthpart p {
-    margin: 30px 0;
-}
-
-.Thirdpart h2,
-.Fifthpart h2 {
-    text-align: center;
-}
-
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    h1 {
-        font-size: 24px !important;
-    }
-
-    p {
-        font-size: 12px;
+@media only screen and (min-width: 1200px) {
+    .png_second{
+        width: 500px;
+        height: 500px;
     }
 }
