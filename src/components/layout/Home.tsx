@@ -50,7 +50,7 @@ const FirstPartContent = styled(Box)(({ theme }) => ({
     textAlign: 'center',
     padding: '0 12px',
     [theme.breakpoints.up('sm')]: {
-        width: '75%',
+        width: '76%',
         left: '12.5%',
     },
     [theme.breakpoints.up(992)]: {

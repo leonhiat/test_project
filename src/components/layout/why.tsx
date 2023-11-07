@@ -47,7 +47,7 @@ export default Why;
 const ThirdPart = styled(Box)(({ theme }) => ({
     marginTop: '180px',
     [theme.breakpoints.up(600)]:{
-        width: '75%',
+        width: '76%',
         margin: '0 auto',
         marginTop: '180px',
     },

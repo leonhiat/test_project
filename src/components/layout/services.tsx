@@ -61,7 +61,7 @@ export default Services;
 const SecondPart = styled(Box)(({ theme }) => ({
     marginTop: '260px',
     [theme.breakpoints.up(600)]:{
-        width: '75%',
+        width: '76%',
         margin: '0 auto',
         marginTop: '260px',
     },

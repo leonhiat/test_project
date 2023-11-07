@@ -34,15 +34,26 @@ a {
     object-position: center;
     border-radius: 20px;
     margin: 0 auto;
-  }
+}
+
+.fourthPartPng {
+    content: url('../img/about.png');
+    width: 100%;
+    object-fit: cover;
+    object-position: right;
+    border-radius: 30px;
+    display: block;
+    margin: 0 auto;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 1200px) {
-    .png_second{
+    .png_second {
         width: 500px;
         height: 500px;
     }
-    .thirdPartPng{
+
+    .thirdPartPng {
         height: 600px;
     }
 }
