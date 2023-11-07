@@ -56,12 +56,12 @@ const FirstPartContent = styled(Box)(({ theme }) => ({
     [theme.breakpoints.up(992)]: {
         left: '0',
         textAlign: 'initial',
-        padding: '0 24px',
+        padding: '0 32px',
     },
     [theme.breakpoints.up(1200)]: {
-        width: '880px',
+        width: '1000px',
         maxWidth: '1536px',
-        padding: '0 24px',
+        padding: '0 36px',
     },
 }));
 
