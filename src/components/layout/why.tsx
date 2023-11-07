@@ -57,8 +57,8 @@ const ThirdPart = styled(Box)(({ theme }) => ({
         marginTop: '180px'
     },
     [theme.breakpoints.up(1200)]:{
-        width: '96%',
-        margin: '0 24px',
+        width: '100%',
+        padding: '0 24px',
         marginTop: '180px'
     },
 }))

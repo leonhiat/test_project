@@ -59,8 +59,7 @@ const FirstPartContent = styled(Box)(({ theme }) => ({
         padding: '0 32px',
     },
     [theme.breakpoints.up(1200)]: {
-        width: '1000px',
-        maxWidth: '1536px',
+        width: '940px',
         padding: '0 36px',
     },
 }));
@@ -82,6 +81,7 @@ const FirstHead = styled(Box)(({ theme }) => ({
     },
     [theme.breakpoints.up(1200)]: {
         fontSize: '64px',
+        marginBottom: '30px'
     },
 }));
 
@@ -95,7 +95,7 @@ const FirstText = styled(Box)(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
         fontSize: '16px'
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up(768)]: {
         fontSize: '20px'
     },
 }))

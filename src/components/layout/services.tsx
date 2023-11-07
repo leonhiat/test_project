@@ -71,8 +71,8 @@ const SecondPart = styled(Box)(({ theme }) => ({
         marginTop: '260px',
     },
     [theme.breakpoints.up(1200)]:{
-        width: '96%',
-        margin: '0 24px',
+        width: '100%',
+        padding: '0 24px',
         marginTop: '260px',
     },
 }));
