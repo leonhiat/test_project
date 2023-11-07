@@ -3,7 +3,8 @@ import Header from "./header";
 import Home from "./Home";
 import Services from "./services";
 import Why from "./why";
-import About from "./about"
+import About from "./about";
+import Clients from "./clients";
 
 const Landing = () => {
     return (
@@ -13,6 +14,7 @@ const Landing = () => {
             <Services />
             <Why />
             <About />
+            <Clients />
         </div>
     )
 }
