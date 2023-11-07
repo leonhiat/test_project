@@ -1,7 +1,4 @@
-import React, { FC } from "react";
-
-import { Link } from "react-router-dom";
-
+import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,156 +7,142 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+// import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+// import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
-const pages = ["Home", "Our Services", "About us", "Contact Us"];
+const pages = ["Home", "Our Services", "About Us", "Contact Us"];
 
-const Header: FC = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-        null
-    );
+function Header() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
+  return (
+    <AppBar position="absolute" color="transparent">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#"
+            sx={{
+              mr: 12,
+              display: { xs: "none", lg: "flex" },
+              fontSize: "40px",
+              fontFamily: "Inter",
+              fontWeight: 500,
+              color: "#FFF",
+              textDecoration: "none",
+              textAlign: "center",
+            }}
+          >
+            <Link to="/">LOGO</Link>
+          </Typography>
 
-    return (
-        <AppBar position="static" color="transparent">
-            <Container maxWidth="xl" >
-                <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="#"
-                        sx={{
-                            mr: 10,
-                            ml: 5,
-                            display: { xs: "none", md: "flex" },
-                            textDecoration: "none",
-                            color: "white",
-                            fontSize: 40,
-                            fontFamily: "Inter",
-                            fontWeight: "500",
-                            wordWrap: "break-word",
-                        }}
-                    >
-                        LOGO
-                    </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", lg: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              sx={{ color: "white" }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", lg: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#"
+            sx={{
+              display: { xs: "flex", lg: "none" },
+              flexGrow: 1,
+              fontSize: "28px",
+              fontFamily: "Inter",
+              fontWeight: 500,
+              color: "#FFF",
+              textDecoration: "none",
+              textAlign: "center",
+            }}
+          >
+            <Link to="/">LOGO</Link>
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                className="Header-Buttons"
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 4,
+                  mx: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: 16,
+                }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon sx={{ color: "white" }} />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "left",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: "block", md: "none" },
-                                width: "100%",
-                                height: "100%",
-                                justifyContent: "flex-start",
-                                alignItems: "center",
-                                gap: 32,
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <Typography
-                        variant="h5"
-                        component="a"
-                        href="#"
-                        sx={{
-                            mr: 8,
-                            display: { xs: "flex", md: "none" },
-                            flexGrow: 1,
-                            textDecoration: "none",
-                            color: "white",
-                            fontSize: 28,
-                            fontFamily: "Inter",
-                            fontWeight: "500",
-                            wordWrap: "break-word",
-                        }}
-                    >
-                        LOGO
-                    </Typography>
-                    <Box
-                        component="div"
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: "none", md: "flex" },
-                            gap: "22px",
-                        }}
-                    >
-                        {pages.map((page) => (
-                            <Typography
-                                component="a"
-                                href="#"
-                                sx={{
-                                    textAlign: "center",
-                                    color: "white",
-                                    fontSize: 18,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: "500",
-                                    wordWrap: "break-word",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                {page}
-                            </Typography>
-                        ))}
-                    </Box>
-
-                    <Link to="/singIn">
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Typography
-                                sx={{
-                                    mr: 6,
-                                    textAlign: "center",
-                                    color: "white",
-                                    fontSize: 14,
-                                    fontFamily: "Inter",
-                                    fontWeight: "500",
-                                    wordWrap: "break-word",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Sign In
-                            </Typography>
-                        </Box>
-                    </Link>
-                </Toolbar>
-            </Container>
-        </AppBar>
-    );
-};
-
+          <Box sx={{ flexGrow: 0 }}>
+            <Link to="/signIn">
+              <Button
+                variant="text"
+                sx={{
+                  my: 2,
+                  color: "white",
+                  fontSize: "20px",
+                  fontWeight: 500,
+                  fontFamily: "Inter",
+                }}
+              >
+                Sign In
+              </Button>
+            </Link>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+}
 export default Header;
