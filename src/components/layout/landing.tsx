@@ -6,6 +6,7 @@ import Why from "./why";
 import About from "./about";
 import Clients from "./clients";
 import Contact from './contact';
+import Footer from './footer';
 
 const Landing = () => {
     return (
@@ -17,6 +18,7 @@ const Landing = () => {
             <About />
             <Clients />
             <Contact />
+            <Footer />
         </div>
     )
 }

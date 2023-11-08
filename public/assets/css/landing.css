@@ -54,6 +54,14 @@ a {
     width: 10%;
 }
 
+hr{
+    margin: 72px 16px 19px;
+}
+
+input, textarea{
+    color: white !important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 1200px) {
     .png_second {

@@ -125,6 +125,6 @@ const GetStartText = styled(Box)(({ theme }) => ({
         fontSize: '20px'
     },
     [theme.breakpoints.up(992)]: {
-        left: '60%',
+        left: '66%',
     },
 }))
