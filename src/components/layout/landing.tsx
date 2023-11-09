@@ -5,6 +5,7 @@ import Services from "./services";
 import Why from "./why";
 import About from "./about";
 import Clients from "./clients";
+import Contact from './contact';
 
 const Landing = () => {
     return (
@@ -15,6 +16,7 @@ const Landing = () => {
             <Why />
             <About />
             <Clients />
+            <Contact />
         </div>
     )
 }
