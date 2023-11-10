@@ -16,7 +16,7 @@ const Landing = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         logout();
-      }, 5000);
+      }, 30000);
     };
 
     const logout = () => {
