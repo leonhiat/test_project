@@ -9,42 +9,42 @@ import Contact from "./contact";
 import Footer from "./footer";
 
 const Landing = () => {
-  let timeoutId: ReturnType<typeof setTimeout>;
+  // let timeoutId: ReturnType<typeof setTimeout>;
 
-  useEffect(() => {
-    const resetTimeout = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        logout();
-      }, 30000);
-    };
+  // useEffect(() => {
+  //   const resetTimeout = () => {
+  //     clearTimeout(timeoutId);
+  //     timeoutId = setTimeout(() => {
+  //       logout();
+  //     }, 30000);
+  //   };
 
-    const logout = () => {
-      // Destroy the token and perform any necessary cleanup
-      // For example:
-      localStorage.removeItem("token");
-      // Additional cleanup logic here
-      if (!localStorage.getItem("token")) {
-        alert("Token has been destroyed."); // Confirmation message
-      }
-      // Redirect to the login page or perform any other necessary actions
-      // For example:
-      window.location.href = "/login";
-    };
+  //   const logout = () => {
+  //     // Destroy the token and perform any necessary cleanup
+  //     // For example:
+  //     localStorage.removeItem("token");
+  //     // Additional cleanup logic here
+  //     if (!localStorage.getItem("token")) {
+  //       alert("Token has been destroyed."); // Confirmation message
+  //     }
+  //     // Redirect to the login page or perform any other necessary actions
+  //     // For example:
+  //     window.location.href = "/login";
+  //   };
 
-    resetTimeout();
+  //   resetTimeout();
 
-    document.addEventListener("mousemove", resetTimeout);
-    document.addEventListener("mousedown", resetTimeout);
-    document.addEventListener("keypress", resetTimeout);
+  //   document.addEventListener("mousemove", resetTimeout);
+  //   document.addEventListener("mousedown", resetTimeout);
+  //   document.addEventListener("keypress", resetTimeout);
 
-    return () => {
-      document.removeEventListener("mousemove", resetTimeout);
-      document.removeEventListener("mousedown", resetTimeout);
-      document.removeEventListener("keypress", resetTimeout);
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousemove", resetTimeout);
+  //     document.removeEventListener("mousedown", resetTimeout);
+  //     document.removeEventListener("keypress", resetTimeout);
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
   return (
     <div className="landing">
       <Header />

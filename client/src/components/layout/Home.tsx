@@ -1,12 +1,23 @@
 import React from "react";
 import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
+import { useAccount, useNetwork, useBalance } from "wagmi";
 
 const Home = () => {
+  const { address, connector } = useAccount();
+  const { chain } = useNetwork();
+
   return (
     <FirstPart>
       <ImageCover>
         <FirstPartContent>
+          <div>{address}</div>
+          {chain && <div>Connected to {chain.name}</div>}
+          {connector && <div>{connector.name}</div>}
+          <Native />
+          <USDT />
+          <USDC />
+
           <FirstHead>Phoniex Security Service</FirstHead>
           <FirstText>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -129,3 +140,47 @@ const GetStartText = styled(Box)(({ theme }) => ({
     left: "60%",
   },
 }));
+
+const Native = () => {
+  const { data, isError, isLoading } = useBalance({
+    address: "0xbF9adc33683De9D652031683F265558024380deD",
+  });
+
+  if (isLoading) return <div>Fetching balance…</div>;
+  if (isError) return <div>Error fetching balance</div>;
+  return (
+    <div>
+      Native: {data?.formatted} {data?.symbol}
+    </div>
+  );
+};
+
+const USDT = () => {
+  const { data, isError, isLoading } = useBalance({
+    address: "0xbF9adc33683De9D652031683F265558024380deD",
+    token: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+  });
+
+  if (isLoading) return <div>Fetching balance…</div>;
+  if (isError) return <div>Error fetching balance</div>;
+  return (
+    <div>
+      USDT: {data?.formatted} {data?.symbol}
+    </div>
+  );
+};
+
+const USDC = () => {
+  const { data, isError, isLoading } = useBalance({
+    address: "0xbF9adc33683De9D652031683F265558024380deD",
+    token: "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
+  });
+
+  if (isLoading) return <div>Fetching balance…</div>;
+  if (isError) return <div>Error fetching balance</div>;
+  return (
+    <div>
+      USDC: {data?.formatted} {data?.symbol}
+    </div>
+  );
+};

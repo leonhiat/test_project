@@ -12,6 +12,7 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const pages = ["Home", "Our Services", "About Us", "Contact Us"];
 
@@ -123,7 +124,19 @@ function Header() {
               </Button>
             ))}
           </Box>
-
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", lg: "flex" },
+              my: 4,
+              mx: 2,
+              color: "white",
+              fontSize: 16,
+            }}
+          >
+            <ConnectButton />
+          </Box>
+          
           <Box sx={{ flexGrow: 0 }}>
             <Link to="/login">
               <Button
@@ -146,3 +159,4 @@ function Header() {
   );
 }
 export default Header;
+
