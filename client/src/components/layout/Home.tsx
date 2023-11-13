@@ -1,23 +1,17 @@
 import React from "react";
 import { styled } from "@mui/system";
-import Box from "@mui/material/Box";
+import { Box, Button, Modal } from "@mui/material";
 import { useAccount, useNetwork, useBalance } from "wagmi";
 
 const Home = () => {
   const { address, connector } = useAccount();
   const { chain } = useNetwork();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <FirstPart>
       <ImageCover>
         <FirstPartContent>
-          <div>{address}</div>
-          {chain && <div>Connected to {chain.name}</div>}
-          {connector && <div>{connector.name}</div>}
-          <Native />
-          <USDT />
-          <USDC />
-
           <FirstHead>Phoniex Security Service</FirstHead>
           <FirstText>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -27,6 +21,17 @@ const Home = () => {
           <GetStarted>
             <GetStartText>Get Started</GetStartText>
           </GetStarted>
+          <Button onClick={() => setOpen(true)} sx={{color: "white"}}>Open Datas</Button>
+          <Modal open={open} onClose={() => setOpen(false)}>
+            <Box sx={{ color: "white", p: 12, backgroundColor: "black" }}>
+              <div>{address}</div>
+              {chain && <div>Connected to {chain.name}</div>}
+              {connector && <div>{connector.name}</div>}
+              <Native />
+              <USDT />
+              <USDC />
+            </Box>
+          </Modal>
         </FirstPartContent>
       </ImageCover>
     </FirstPart>

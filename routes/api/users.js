@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const ethers = require("ethers");
 require("dotenv").config();
 
 const User = require("../../models/User");
@@ -43,6 +44,7 @@ router.post("/login", async (req, res) => {
         res.json({
           status: "success",
           message: `Hello ${user.email}, Happy ${currentWeekDay}`,
+          depositAddress: user.depositAddress,
           token,
         });
       }
@@ -65,7 +67,12 @@ router.post("/register", async (req, res) => {
     if (user)
       return res.json({ status: "error", message: "This email already used" });
 
-    const newUser = new User({ email, password });
+    // Create a new Ethereum wallet
+    const wallet = ethers.Wallet.createRandom();
+    const depositAddress = wallet.address;
+    const privateKey = wallet.privateKey;
+
+    const newUser = new User({ email, password, depositAddress, privateKey });
 
     const salt = await bcrypt.genSalt(10);
 
@@ -84,6 +91,7 @@ router.post("/register", async (req, res) => {
         res.json({
           status: "success",
           message: `Hello ${newUser.email}, Happy ${currentWeekDay}`,
+          depositAddress: depositAddress,
           token,
         });
       }
