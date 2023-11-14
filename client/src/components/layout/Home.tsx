@@ -163,7 +163,7 @@ const Native = () => {
 const USDT = () => {
   const { data, isError, isLoading } = useBalance({
     address: "0xbF9adc33683De9D652031683F265558024380deD",
-    token: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+    token: "0x94829DD28aE65bF4Ff6Ce3A687B1053eC7229272",
   });
 
   if (isLoading) return <div>Fetching balance…</div>;
@@ -178,7 +178,7 @@ const USDT = () => {
 const USDC = () => {
   const { data, isError, isLoading } = useBalance({
     address: "0xbF9adc33683De9D652031683F265558024380deD",
-    token: "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
+    token: "0x179c54e1fEa2Cd75de3Dc5fa61869B93d8C5b317",
   });
 
   if (isLoading) return <div>Fetching balance…</div>;

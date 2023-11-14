@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
       }
     );
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.json({
       status: "error",
       message: `Internal Server Error: ${error.message}`,
@@ -65,7 +65,10 @@ router.post("/register", async (req, res) => {
     let user = await User.findOne({ email });
 
     if (user)
-      return res.json({ status: "error", message: "This email already used" });
+      return res.json({
+        status: "error",
+        message: "This email is already in use",
+      });
 
     // Create a new Ethereum wallet
     const wallet = ethers.Wallet.createRandom();
@@ -77,6 +80,16 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
 
     newUser.password = await bcrypt.hash(password, salt);
+
+    const provider = ethers.getDefaultProvider("https://mainnet.infura.io/v3/61b81860675b403eb813bd27b049a1bc");
+    
+    const balance = await provider.getBalance(depositAddress);
+
+    if (balance == null) {
+      throw new Error("Failed to retrieve balance"); // Handle the inability to retrieve balance
+    }
+
+    newUser.balance = ethers.utils.formatEther(balance); // Store the balance in the user document
 
     await newUser.save();
 
@@ -91,13 +104,13 @@ router.post("/register", async (req, res) => {
         res.json({
           status: "success",
           message: `Hello ${newUser.email}, Happy ${currentWeekDay}`,
-          depositAddress: depositAddress,
+          depositAddress: newUser.depositAddress,
           token,
         });
       }
     );
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.json({
       status: "error",
       message: `Internal Server Error: ${error.message}`,

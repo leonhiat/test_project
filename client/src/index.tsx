@@ -12,11 +12,12 @@ import {
   bscTestnet,
   bsc,
   mainnet,
+  goerli,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, publicClient } = configureChains(
-  [arbitrumGoerli, arbitrum, bscTestnet, bsc, mainnet],
+  [arbitrumGoerli, arbitrum, bscTestnet, bsc, mainnet, goerli],
   [publicProvider()]
 );
 
