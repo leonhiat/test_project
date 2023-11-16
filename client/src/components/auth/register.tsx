@@ -59,7 +59,7 @@ const Register = () => {
           setMessage(res.data.message);
           setOpen(true);
           if (res.data.status === "success")
-            setTimeout(() => (window.location.href = "/login"), 4000);
+            setTimeout(() => (window.location.href = "/SignIn"), 3000);
         })
         .catch((err) => console.log(err));
     },
@@ -69,7 +69,7 @@ const Register = () => {
     <RegisterPart>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         TransitionComponent={SlideTransition}
@@ -212,7 +212,7 @@ const Register = () => {
                   fontSize: "16px",
                 }}
               >
-                <Link to="/login">Sign in</Link>
+                <Link to="/SignIn">Sign In</Link>
               </Typography>
             </Box>
           </Box>

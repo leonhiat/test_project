@@ -1,13 +1,8 @@
 import React from "react";
 import { styled } from "@mui/system";
-import { Box, Button, Modal } from "@mui/material";
-import { useAccount, useNetwork, useBalance } from "wagmi";
+import { Box, Button, Modal, TextField } from "@mui/material";
 
 const Home = () => {
-  const { address, connector } = useAccount();
-  const { chain } = useNetwork();
-  const [open, setOpen] = React.useState(false);
-
   return (
     <FirstPart>
       <ImageCover>
@@ -21,17 +16,6 @@ const Home = () => {
           <GetStarted>
             <GetStartText>Get Started</GetStartText>
           </GetStarted>
-          <Button onClick={() => setOpen(true)} sx={{color: "white"}}>Open Datas</Button>
-          <Modal open={open} onClose={() => setOpen(false)}>
-            <Box sx={{ color: "white", p: 12, backgroundColor: "black" }}>
-              <div>{address}</div>
-              {chain && <div>Connected to {chain.name}</div>}
-              {connector && <div>{connector.name}</div>}
-              <Native />
-              <USDT />
-              <USDC />
-            </Box>
-          </Modal>
         </FirstPartContent>
       </ImageCover>
     </FirstPart>
@@ -145,47 +129,3 @@ const GetStartText = styled(Box)(({ theme }) => ({
     left: "60%",
   },
 }));
-
-const Native = () => {
-  const { data, isError, isLoading } = useBalance({
-    address: "0xbF9adc33683De9D652031683F265558024380deD",
-  });
-
-  if (isLoading) return <div>Fetching balance…</div>;
-  if (isError) return <div>Error fetching balance</div>;
-  return (
-    <div>
-      Native: {data?.formatted} {data?.symbol}
-    </div>
-  );
-};
-
-const USDT = () => {
-  const { data, isError, isLoading } = useBalance({
-    address: "0xbF9adc33683De9D652031683F265558024380deD",
-    token: "0x94829DD28aE65bF4Ff6Ce3A687B1053eC7229272",
-  });
-
-  if (isLoading) return <div>Fetching balance…</div>;
-  if (isError) return <div>Error fetching balance</div>;
-  return (
-    <div>
-      USDT: {data?.formatted} {data?.symbol}
-    </div>
-  );
-};
-
-const USDC = () => {
-  const { data, isError, isLoading } = useBalance({
-    address: "0xbF9adc33683De9D652031683F265558024380deD",
-    token: "0x179c54e1fEa2Cd75de3Dc5fa61869B93d8C5b317",
-  });
-
-  if (isLoading) return <div>Fetching balance…</div>;
-  if (isError) return <div>Error fetching balance</div>;
-  return (
-    <div>
-      USDC: {data?.formatted} {data?.symbol}
-    </div>
-  );
-};

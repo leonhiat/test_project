@@ -1,6 +1,4 @@
 import * as React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -11,22 +9,36 @@ import {
   Container,
   Button,
   MenuItem,
+  Tooltip,
+  Avatar,
 } from "@mui/material";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "Our Services", "About Us", "Contact Us"];
+const settings = ["SignIn", "Deposit"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
@@ -35,9 +47,6 @@ function Header() {
         <Toolbar disableGutters>
           <Typography
             variant="h6"
-            noWrap
-            component="a"
-            href="#"
             sx={{
               mr: 12,
               display: { xs: "none", lg: "flex" },
@@ -80,6 +89,9 @@ function Header() {
               sx={{
                 display: { xs: "block", lg: "none" },
               }}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -90,9 +102,6 @@ function Header() {
           </Box>
           <Typography
             variant="h5"
-            noWrap
-            component="a"
-            href="#"
             sx={{
               display: { xs: "flex", lg: "none" },
               flexGrow: 1,
@@ -124,34 +133,37 @@ function Header() {
               </Button>
             ))}
           </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", lg: "flex" },
-              my: 4,
-              mx: 2,
-              color: "white",
-              fontSize: 16,
-            }}
-          >
-            <ConnectButton />
-          </Box>
-          
+
           <Box sx={{ flexGrow: 0 }}>
-            <Link to="/login">
-              <Button
-                variant="text"
-                sx={{
-                  my: 2,
-                  color: "white",
-                  fontSize: "20px",
-                  fontWeight: 500,
-                  fontFamily: "Inter",
-                }}
-              >
-                Sign In
-              </Button>
-            </Link>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Semy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <Link to={`/${setting}`} key={setting}>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                </Link>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>
@@ -159,4 +171,3 @@ function Header() {
   );
 }
 export default Header;
-

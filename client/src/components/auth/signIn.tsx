@@ -55,8 +55,10 @@ const SignIn = () => {
           setSeverity(res.data.status);
           setMessage(res.data.message);
           setOpen(true);
-          if (res.data.status === "success")
-            setTimeout(() => (window.location.href = "/"), 4000);
+          if (res.data.status === "success") {
+            localStorage.setItem("currentUser", res.data.token);
+            setTimeout(() => (window.location.href = "/"), 3000);
+          }
         })
         .catch((err) => console.log(err));
     },
@@ -66,7 +68,7 @@ const SignIn = () => {
     <SignPart>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         TransitionComponent={SlideTransition}

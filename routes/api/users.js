@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
     if (!isMatch)
       return res.json({ status: "error", message: "Wrong password" });
 
-    const payload = { id: user.id };
+    const payload = { id: user.id, depositAddress: user.depositAddress };
 
     jwt.sign(
       payload,
@@ -81,19 +81,9 @@ router.post("/register", async (req, res) => {
 
     newUser.password = await bcrypt.hash(password, salt);
 
-    const provider = ethers.getDefaultProvider("https://mainnet.infura.io/v3/61b81860675b403eb813bd27b049a1bc");
-    
-    const balance = await provider.getBalance(depositAddress);
-
-    if (balance == null) {
-      throw new Error("Failed to retrieve balance"); // Handle the inability to retrieve balance
-    }
-
-    newUser.balance = ethers.utils.formatEther(balance); // Store the balance in the user document
-
     await newUser.save();
 
-    const payload = { id: newUser.id };
+    const payload = { id: newUser.id, depositAddress: newUser.depositAddress };
 
     jwt.sign(
       payload,
@@ -109,6 +99,34 @@ router.post("/register", async (req, res) => {
         });
       }
     );
+  } catch (error) {
+    console.error(error.message);
+    res.json({
+      status: "error",
+      message: `Internal Server Error: ${error.message}`,
+    });
+  }
+});
+
+router.post("/deposit", async (req, res) => {
+  const { depositAddress, amount } = req.body;
+
+  try {
+    let user = await User.findOne({ depositAddress });
+
+    if (!user)
+      return res.json({
+        status: "error",
+        message: "Invalid deposit address",
+      });
+    user.amount += parseFloat(amount);
+    await user.save();
+
+    res.json({
+      status: "success",
+      message: `Deposit of ${amount} ETH processed successfully`,
+      amount: user.amount,
+    });
   } catch (error) {
     console.error(error.message);
     res.json({
