@@ -7,6 +7,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useNetwork, useBalance } from "wagmi";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { ethers } from "ethers";
 
 const theme = createTheme({
   palette: {
@@ -16,10 +17,15 @@ const theme = createTheme({
   },
 });
 
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 const Deposit = () => {
   const { address, connector } = useAccount();
   const { chain } = useNetwork();
-  const [open, setOpen] = React.useState(false);
 
   const [depositAddress, setDepositAddress] = React.useState("");
   const [depositAmount, setDepositAmount] = React.useState("0");
@@ -32,16 +38,38 @@ const Deposit = () => {
     }
   });
 
-  const handleDeposit = () => {
-    axios
-      .post("http://localhost:3130/api/user/deposit", {
-        depositAddress,
-        amount: depositAmount,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+  const connectWallet = async () => {
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const signer = provider.getSigner();
+
+    return signer;
+  };
+
+  const handleDeposit = async () => {
+    try {
+      const signer = await connectWallet();
+
+      await signer.sendTransaction({
+        to: depositAddress,
+        value: ethers.utils.parseEther(depositAmount),
+        gasLimit: 21000
+      });
+
+      axios
+        .post("http://localhost:3130/api/user/deposit", {
+          amount: depositAmount,
+          depositAddress,
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

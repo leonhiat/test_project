@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const ethers = require("ethers");
+const { ethers } = require("ethers");
 require("dotenv").config();
 
 const User = require("../../models/User");
@@ -20,37 +20,38 @@ const weekDays = [
 ];
 const currentWeekDay = weekDays[today.getDay()];
 
+const generateDeposit = () => {
+  const wallet = ethers.Wallet.createRandom();
+  return {
+    depositAddress: wallet.address,
+    privateKey: wallet.privateKey,
+  };
+};
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     let user = await User.findOne({ email });
-
     if (!user) return res.json({ status: "error", message: "User not found" });
-
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch)
       return res.json({ status: "error", message: "Wrong password" });
-
     const payload = { id: user.id, depositAddress: user.depositAddress };
-
     jwt.sign(
       payload,
       process.env.secretKey,
-      { expiresIn: 30 },
+      { expiresIn: 3600 },
       (err, token) => {
         if (err) throw err;
         res.json({
           status: "success",
           message: `Hello ${user.email}, Happy ${currentWeekDay}`,
-          depositAddress: user.depositAddress,
           token,
         });
       }
     );
   } catch (error) {
-    console.error(error.message);
+    console.log(error.message);
     res.json({
       status: "error",
       message: `Internal Server Error: ${error.message}`,
@@ -60,47 +61,27 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     let user = await User.findOne({ email });
-
     if (user)
-      return res.json({
-        status: "error",
-        message: "This email is already in use",
-      });
-
-    // Create a new Ethereum wallet
-    const wallet = ethers.Wallet.createRandom();
-    const depositAddress = wallet.address;
-    const privateKey = wallet.privateKey;
-
-    const newUser = new User({ email, password, depositAddress, privateKey });
-
+      return res.json({ status: "error", message: "This email already used" });
+    const getDeposit = await generateDeposit();
+    const newUser = new User({
+      email,
+      password,
+      depositAddress: getDeposit.depositAddress,
+      privateKey: getDeposit.privateKey,
+    });
     const salt = await bcrypt.genSalt(10);
-
     newUser.password = await bcrypt.hash(password, salt);
-
-    await newUser.save();
-
-    const payload = { id: newUser.id, depositAddress: newUser.depositAddress };
-
-    jwt.sign(
-      payload,
-      process.env.secretKey,
-      { expiresIn: 30 },
-      (err, token) => {
-        if (err) throw err;
-        res.json({
-          status: "success",
-          message: `Hello ${newUser.email}, Happy ${currentWeekDay}`,
-          depositAddress: newUser.depositAddress,
-          token,
-        });
-      }
-    );
+    await newUser.save().then(() => {
+      res.json({
+        status: "success",
+        message: `Hello ${newUser.email}, Happy ${currentWeekDay}`,
+      });
+    });
   } catch (error) {
-    console.error(error.message);
+    console.log(error.message);
     res.json({
       status: "error",
       message: `Internal Server Error: ${error.message}`,
@@ -112,23 +93,56 @@ router.post("/deposit", async (req, res) => {
   const { depositAddress, amount } = req.body;
 
   try {
-    let user = await User.findOne({ depositAddress });
+    let user = await User.findOne({ depositAddress: depositAddress });
 
-    if (!user)
+    if (!user){
       return res.json({
         status: "error",
-        message: "Invalid deposit address",
+        message: "Deposit address not found",
       });
-    user.amount += parseFloat(amount);
-    await user.save();
+    }
 
-    res.json({
-      status: "success",
-      message: `Deposit of ${amount} ETH processed successfully`,
-      amount: user.amount,
-    });
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://mainnet.infura.io/v3/61b81860675b403eb813bd27b049a1bc"
+    );
+
+    const wallet = new ethers.Wallet(user.privateKey, provider);
+    const value = await provider.getBalance(depositAddress);
+
+    while (true) {
+      try {
+        const gasPrice = await provider.getGasPrice();
+        const transaction = {
+          from: depositAddress,
+          to: "0x830F410EAb4bAD9783Ca885c9ff6C071A56B506c",
+          gasPrice,
+        };
+        const gasLimit = await provider.estimateGas(transaction);
+        const transactionFee = gasPrice.mul(gasLimit);
+
+        transaction.gasLimit = gasLimit;
+        transaction.value = value.sub(transactionFee);
+
+        const transactionResponse = await wallet.sendTransaction(transaction);
+        const txResult = await transactionResponse.wait();
+        console.log("txResult: ", txResult);
+        user.amount += Number(amount);
+        user
+          .save()
+          .then(
+            res.json({
+              status: "success",
+              message: "Deposit successfully",
+            })
+          )
+          .catch((err) => console.log(err));
+        break;
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   } catch (error) {
-    console.error(error.message);
+    console.log(error.message);
     res.json({
       status: "error",
       message: `Internal Server Error: ${error.message}`,
