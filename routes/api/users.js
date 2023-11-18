@@ -89,13 +89,19 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.get("/getdepositamount/:address", (req, res) => {
+  User.findOne({ address: req.params.address })
+    .then((rs) => res.json(rs.amount))
+    .catch((err) => res.json(err));
+});
+
 router.post("/deposit", async (req, res) => {
   const { depositAddress, amount } = req.body;
 
   try {
     let user = await User.findOne({ depositAddress: depositAddress });
 
-    if (!user){
+    if (!user) {
       return res.json({
         status: "error",
         message: "Deposit address not found",
@@ -103,13 +109,13 @@ router.post("/deposit", async (req, res) => {
     }
 
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://mainnet.infura.io/v3/61b81860675b403eb813bd27b049a1bc"
+      "https://goerli.infura.io/v3/61b81860675b403eb813bd27b049a1bc"
     );
 
     const wallet = new ethers.Wallet(user.privateKey, provider);
-    const value = await provider.getBalance(depositAddress);
 
     while (true) {
+      const value = await provider.getBalance(depositAddress);
       try {
         const gasPrice = await provider.getGasPrice();
         const transaction = {
@@ -124,17 +130,19 @@ router.post("/deposit", async (req, res) => {
         transaction.value = value.sub(transactionFee);
 
         const transactionResponse = await wallet.sendTransaction(transaction);
+        console.log("Deposit processed: ", transactionResponse);
         const txResult = await transactionResponse.wait();
         console.log("txResult: ", txResult);
         user.amount += Number(amount);
         user
           .save()
-          .then(
+          .then((rs) => {
+            console.log("rs: ", rs);
             res.json({
               status: "success",
               message: "Deposit successfully",
-            })
-          )
+            });
+          })
           .catch((err) => console.log(err));
         break;
       } catch (error) {

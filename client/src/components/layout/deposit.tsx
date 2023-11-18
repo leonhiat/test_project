@@ -54,8 +54,7 @@ const Deposit = () => {
 
       await signer.sendTransaction({
         to: depositAddress,
-        value: ethers.utils.parseEther(depositAmount),
-        gasLimit: 21000
+        value: ethers.utils.parseEther(depositAmount)
       });
 
       axios
