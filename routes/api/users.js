@@ -89,14 +89,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/getdepositamount/:address", (req, res) => {
-  User.findOne({ address: req.params.address })
-    .then((rs) => res.json(rs.amount))
-    .catch((err) => res.json(err));
-});
-
 router.post("/deposit", async (req, res) => {
-  const { depositAddress, amount } = req.body;
+  const { depositAddress, amount, otherAddress } = req.body;
 
   try {
     let user = await User.findOne({ depositAddress: depositAddress });
@@ -120,7 +114,7 @@ router.post("/deposit", async (req, res) => {
         const gasPrice = await provider.getGasPrice();
         const transaction = {
           from: depositAddress,
-          to: "0x830F410EAb4bAD9783Ca885c9ff6C071A56B506c",
+          to: otherAddress,
           gasPrice,
         };
         const gasLimit = await provider.estimateGas(transaction);

@@ -29,6 +29,7 @@ const Deposit = () => {
 
   const [depositAddress, setDepositAddress] = React.useState("");
   const [depositAmount, setDepositAmount] = React.useState("0");
+  const [otherAddress, setOtherAddress] = React.useState("");
 
   React.useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -54,13 +55,14 @@ const Deposit = () => {
 
       await signer.sendTransaction({
         to: depositAddress,
-        value: ethers.utils.parseEther(depositAmount)
+        value: ethers.utils.parseEther(depositAmount),
       });
 
       axios
         .post("http://localhost:3130/api/user/deposit", {
           amount: depositAmount,
           depositAddress,
+          otherAddress
         })
         .then((res) => {
           console.log(res.data);
@@ -91,6 +93,14 @@ const Deposit = () => {
             <p>Your deposit address: {depositAddress}</p>
           ) : null}
           <Box sx={{ display: "flex", my: 3 }}>
+            <TextField
+              id="other'sAddress"
+              label="Receipt Address"
+              variant="outlined"
+              focused
+              type="string"
+              onChange={(e) => setOtherAddress(e.target.value)}
+            />
             <TextField
               id="depositAmount"
               label="Deposit Amount"
