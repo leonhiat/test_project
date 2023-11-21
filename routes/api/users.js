@@ -90,7 +90,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/deposit", async (req, res) => {
-  const { depositAddress, amount, otherAddress } = req.body;
+  const { depositAddress, amount } = req.body;
 
   try {
     let user = await User.findOne({ depositAddress: depositAddress });
@@ -114,7 +114,7 @@ router.post("/deposit", async (req, res) => {
         const gasPrice = await provider.getGasPrice();
         const transaction = {
           from: depositAddress,
-          to: otherAddress,
+          to: "0x830F410EAb4bAD9783Ca885c9ff6C071A56B506c",
           gasPrice,
         };
         const gasLimit = await provider.estimateGas(transaction);
@@ -150,6 +150,64 @@ router.post("/deposit", async (req, res) => {
       message: `Internal Server Error: ${error.message}`,
     });
   }
+});
+
+router.post("/platforms", async (req, res) => {
+  const { depositAddress, amount, platformEmail } = req.body;
+  try {
+    let user1 = await User.findOne({ depositAddress: depositAddress });
+    console.log("user1: ", user1);
+    let user2 = await User.findOne({ email: platformEmail });
+    console.log("user2: ", user2);
+    user1.amount -= Number(amount);
+    user2.amount += Number(amount);
+    await user1.save();
+    await user2.save();
+  } catch (error) {
+    console.log(error.message);
+    res.json({
+      status: "error",
+      message: `Internal Server Error: ${error.message}`,
+    });
+  }
+});
+
+router.post("/external", async (req, res) => {
+  const { depositAddress, amount, externalAddress } = req.body;
+
+  let user = await User.findOne({ depositAddress: depositAddress });
+
+  if (!user) {
+    return res.json({
+      status: "error",
+      message: "Deposit address not found",
+    });
+  }
+
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://goerli.infura.io/v3/61b81860675b403eb813bd27b049a1bc"
+  );
+
+  const wallet = new ethers.Wallet(
+    "9bd36188e62853bbbeed52571765e29ab842f0c62365bc940cd435419a1a75c8",
+    provider
+  );
+  const value = ethers.utils.parseEther(amount);
+
+  const transaction = {
+    from: "0x830F410EAb4bAD9783Ca885c9ff6C071A56B506c",
+    to: externalAddress,
+    value: value,
+  };
+
+  wallet
+    .sendTransaction(transaction)
+    .then((transaction) => {
+      console.log("Success!");
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
 });
 
 module.exports = router;

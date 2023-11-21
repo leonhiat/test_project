@@ -29,7 +29,10 @@ const Deposit = () => {
 
   const [depositAddress, setDepositAddress] = React.useState("");
   const [depositAmount, setDepositAmount] = React.useState("0");
-  const [otherAddress, setOtherAddress] = React.useState("");
+  const [platformEmail, setPlatformEmail] = React.useState("");
+  const [platformAmount, setPlatformAmount] = React.useState("0");
+  const [externalAddress, setExternalAddress] = React.useState("");
+  const [externalAmount, setExternalAmount] = React.useState("0");
 
   React.useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -38,6 +41,24 @@ const Deposit = () => {
       setDepositAddress(user.depositAddress);
     }
   });
+
+  interface balanceProps {
+    address?: `0x${string}`;
+    token?: `0x${string}`;
+  }
+
+  const GetBalance = (props: balanceProps) => {
+    const { address, token } = props;
+    const { data } = useBalance({
+      address,
+      token,
+    });
+    return (
+      <Box>
+        {data?.formatted} {data?.symbol}
+      </Box>
+    );
+  };
 
   const connectWallet = async () => {
     await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -62,7 +83,35 @@ const Deposit = () => {
         .post("http://localhost:3130/api/user/deposit", {
           amount: depositAmount,
           depositAddress,
-          otherAddress
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlePlatform = async () => {
+    try {
+      await axios.post("http://localhost:3130/api/user/platforms", {
+        depositAddress,
+        amount: platformAmount,
+        platformEmail,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleExternal = async () => {
+    try {
+      await axios
+        .post("http://localhost:3130/api/user/external", {
+          amount: externalAmount,
+          depositAddress,
+          externalAddress
         })
         .then((res) => {
           console.log(res.data);
@@ -86,30 +135,69 @@ const Deposit = () => {
           <div>{address}</div>
           {chain && <div>Connected to {chain.name}</div>}
           {connector && <div>{connector.name}</div>}
-          <Native />
+          <GetBalance address={address} />
           <USDT />
           <USDC />
           {depositAddress ? (
             <p>Your deposit address: {depositAddress}</p>
           ) : null}
+          <h1>Main Wallet</h1>
           <Box sx={{ display: "flex", my: 3 }}>
             <TextField
-              id="other'sAddress"
-              label="Receipt Address"
-              variant="outlined"
-              focused
-              type="string"
-              onChange={(e) => setOtherAddress(e.target.value)}
-            />
-            <TextField
               id="depositAmount"
-              label="Deposit Amount"
+              label="Main Amount"
               variant="outlined"
               focused
               type="number"
               onChange={(e) => setDepositAmount(e.target.value)}
             />
             <Button variant="outlined" onClick={handleDeposit}>
+              Submit
+            </Button>
+          </Box>
+
+          <h1>Platforms</h1>
+          <Box sx={{ display: "flex", my: 3 }}>
+            <TextField
+              id="platformEmail"
+              label="Platform Email"
+              variant="outlined"
+              focused
+              type="string"
+              onChange={(e) => setPlatformEmail(e.target.value)}
+            />
+            <TextField
+              id="platformAmount"
+              label="Platform Amount"
+              variant="outlined"
+              focused
+              type="number"
+              onChange={(e) => setPlatformAmount(e.target.value)}
+            />
+            <Button variant="outlined" onClick={handlePlatform}>
+              Submit
+            </Button>
+          </Box>
+
+          <h1>External Wallet</h1>
+          <Box sx={{ display: "flex", my: 3 }}>
+            <TextField
+              id="externalAddress"
+              label="External Address"
+              variant="outlined"
+              focused
+              type="string"
+              onChange={(e) => setExternalAddress(e.target.value)}
+            />
+            <TextField
+              id="externalAmount"
+              label="External Amount"
+              variant="outlined"
+              focused
+              type="number"
+              onChange={(e) => setExternalAmount(e.target.value)}
+            />
+            <Button variant="outlined" onClick={handleExternal}>
               Submit
             </Button>
           </Box>
@@ -127,20 +215,6 @@ const Depositer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100vh",
 }));
-
-const Native = () => {
-  const { data, isError, isLoading } = useBalance({
-    address: "0xbF9adc33683De9D652031683F265558024380deD",
-  });
-
-  if (isLoading) return <div>Fetching balance…</div>;
-  if (isError) return <div>Error fetching balance</div>;
-  return (
-    <div>
-      Native: {data?.formatted} {data?.symbol}
-    </div>
-  );
-};
 
 const USDT = () => {
   const { data, isError, isLoading } = useBalance({
