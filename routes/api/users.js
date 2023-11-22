@@ -5,6 +5,7 @@ const { ethers } = require("ethers");
 require("dotenv").config();
 
 const User = require("../../models/User");
+const History = require("../../models/History");
 
 const router = express.Router();
 
@@ -90,7 +91,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/deposit", async (req, res) => {
-  const { depositAddress, amount } = req.body;
+  const { user, from, amount, depositAddress } = req.body;
 
   try {
     let user = await User.findOne({ depositAddress: depositAddress });
@@ -128,16 +129,19 @@ router.post("/deposit", async (req, res) => {
         const txResult = await transactionResponse.wait();
         console.log("txResult: ", txResult);
         user.amount += Number(amount);
-        user
-          .save()
-          .then((rs) => {
-            console.log("rs: ", rs);
-            res.json({
-              status: "success",
-              message: "Deposit successfully",
-            });
-          })
-          .catch((err) => console.log(err));
+        const ur = await user.save();
+        console.log("ur: ", ur);
+        const newHistory = new History({
+          user,
+          method: "Deposit",
+          from,
+          amount: amount,
+        });
+        await newHistory.save();
+        res.json({
+          status: "success",
+          message: "Deposit successfully",
+        });
         break;
       } catch (error) {
         console.log(error.message);
@@ -153,7 +157,7 @@ router.post("/deposit", async (req, res) => {
 });
 
 router.post("/platforms", async (req, res) => {
-  const { depositAddress, amount, platformEmail } = req.body;
+  const { user, depositAddress, amount, platformEmail } = req.body;
   try {
     let user1 = await User.findOne({ depositAddress: depositAddress });
     console.log("user1: ", user1);
@@ -163,6 +167,18 @@ router.post("/platforms", async (req, res) => {
     user2.amount += Number(amount);
     await user1.save();
     await user2.save();
+    const newHistory = new History({
+      user,
+      method: "Transfer",
+      from: depositAddress,
+      to: user2.depositAddress,
+      amount: amount,
+    });
+    await newHistory.save();
+    res.json({
+      status: "success",
+      message: "Deposit successfully",
+    });
   } catch (error) {
     console.log(error.message);
     res.json({
@@ -173,16 +189,7 @@ router.post("/platforms", async (req, res) => {
 });
 
 router.post("/external", async (req, res) => {
-  const { depositAddress, amount, externalAddress } = req.body;
-
-  let user = await User.findOne({ depositAddress: depositAddress });
-
-  if (!user) {
-    return res.json({
-      status: "error",
-      message: "Deposit address not found",
-    });
-  }
+  const { user, amount, externalAddress } = req.body;
 
   const provider = new ethers.providers.JsonRpcProvider(
     "https://goerli.infura.io/v3/61b81860675b403eb813bd27b049a1bc"
@@ -203,11 +210,25 @@ router.post("/external", async (req, res) => {
   wallet
     .sendTransaction(transaction)
     .then((transaction) => {
+      const newHistory = new History({
+        user,
+        method: "Withdraw",
+        to: externalAddress,
+        amount: amount,
+      });
+      newHistory.save();
       console.log("Success!");
     })
     .catch((err) => {
       console.log("Error: ", err);
     });
+});
+
+router.post("/history/:userId", (req, res) => {
+  History.find({ user: req.params.userId })
+    .sort({ createdAt: -1 })
+    .then((rs) => res.json(rs))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

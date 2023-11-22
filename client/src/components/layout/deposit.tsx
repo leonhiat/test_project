@@ -27,6 +27,7 @@ const Deposit = () => {
   const { address, connector } = useAccount();
   const { chain } = useNetwork();
 
+  const [userId, setUserId] = React.useState("");
   const [depositAddress, setDepositAddress] = React.useState("");
   const [depositAmount, setDepositAmount] = React.useState("0");
   const [platformEmail, setPlatformEmail] = React.useState("");
@@ -39,8 +40,9 @@ const Deposit = () => {
     if (currentUser) {
       const user = Object(jwtDecode(String(currentUser)));
       setDepositAddress(user.depositAddress);
+      setUserId(user.id);
     }
-  });
+  }, []);
 
   interface balanceProps {
     address?: `0x${string}`;
@@ -81,11 +83,13 @@ const Deposit = () => {
 
       axios
         .post("http://localhost:3130/api/user/deposit", {
+          user: userId,
+          from: address,
           amount: depositAmount,
           depositAddress,
         })
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
         })
         .catch((err) => console.log(err));
     } catch (error) {
@@ -95,11 +99,17 @@ const Deposit = () => {
 
   const handlePlatform = async () => {
     try {
-      await axios.post("http://localhost:3130/api/user/platforms", {
-        depositAddress,
-        amount: platformAmount,
-        platformEmail,
-      });
+      await axios
+        .post("http://localhost:3130/api/user/platforms", {
+          user: userId,
+          platformEmail,
+          amount: platformAmount,
+          depositAddress,
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
     } catch (err) {
       console.error(err);
     }
@@ -109,9 +119,9 @@ const Deposit = () => {
     try {
       await axios
         .post("http://localhost:3130/api/user/external", {
+          user: userId,
           amount: externalAmount,
-          depositAddress,
-          externalAddress
+          externalAddress,
         })
         .then((res) => {
           console.log(res.data);
@@ -127,7 +137,14 @@ const Deposit = () => {
       <Depositer sx={{ px: 4 }}>
         <Box sx={{ my: 3 }}>
           <Link to="/">
-            <Button variant="outlined">Home</Button>
+            <Button sx={{ mx: 1 }} variant="outlined">
+              Home
+            </Button>
+          </Link>
+          <Link to="/history">
+            <Button sx={{ mx: 1 }} variant="outlined">
+              History
+            </Button>
           </Link>
         </Box>
         <ConnectButton />
@@ -211,7 +228,7 @@ export default Deposit;
 
 const Depositer = styled(Box)(({ theme }) => ({
   position: "absolute",
-  backgroundColor: "black",
+  backgroundColor: "#0F1924",
   width: "100%",
   height: "100vh",
 }));

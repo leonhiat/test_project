@@ -5,6 +5,7 @@ import Landing from "./components/layout/landing";
 import SignIn from "./components/auth/signIn";
 import Register from "./components/auth/register";
 import Deposit from "./components/layout/deposit";
+import History from "./components/layout/history";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/SignIn" Component={SignIn} />
         <Route path="/register" Component={Register} />
         <Route path="/deposit" Component={Deposit} />
+        <Route path="/history" Component={History} />
       </Routes>
     </BrowserRouter>
   );
