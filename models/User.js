@@ -8,7 +8,9 @@ const UserSchema = new Schema(
     password: { type: String, required: true },
     depositAddress: { type: String, required: true },
     privateKey: { type: String, required: true },
-    amount: { type: Number, default: 0 },
+    eth: { type: Number, default: 0 },
+    usdt: { type: Number, default: 0 },
+    usdc: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

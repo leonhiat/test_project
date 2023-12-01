@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { styled } from "@mui/system";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
@@ -8,6 +16,10 @@ import { useAccount, useNetwork, useBalance } from "wagmi";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { ethers } from "ethers";
+import {
+  usdtContractABI,
+  usdtContractAddress,
+} from "../constants/usdtContractABI";
 
 const theme = createTheme({
   palette: {
@@ -34,6 +46,21 @@ const Deposit = () => {
   const [platformAmount, setPlatformAmount] = React.useState("0");
   const [externalAddress, setExternalAddress] = React.useState("");
   const [externalAmount, setExternalAmount] = React.useState("0");
+
+  const [coin, setCoin] = React.useState<string | number>("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleChange = (event: SelectChangeEvent<typeof coin>) => {
+    setCoin(event.target.value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   React.useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -74,22 +101,50 @@ const Deposit = () => {
 
   const handleDeposit = async () => {
     try {
+      // Connect to the user's wallet
       const signer = await connectWallet();
 
-      await signer.sendTransaction({
-        to: depositAddress,
-        value: ethers.utils.parseEther(depositAmount),
-      });
+      let amountToSend;
+      let transaction;
+
+      // Check the coin type
+      if (coin === "ETH") {
+        amountToSend = ethers.utils.parseEther(depositAmount); // Sending ETH
+
+        // Build a transaction object for ETH transfer
+        transaction = {
+          to: depositAddress,
+          value: amountToSend,
+        };
+        // Send the transaction using the connected wallet
+        const tx = await signer.sendTransaction(transaction);
+        await tx.wait();
+      } else if (coin === "USDT") {
+        amountToSend = ethers.utils.parseUnits(depositAmount, 18);
+
+        // Get the USDT contract instance using its address and ABI
+        const usdtContract = new ethers.Contract(
+          usdtContractAddress,
+          usdtContractABI.result,
+          signer
+        );
+        const tx = await usdtContract.transfer(depositAddress, amountToSend);
+        await tx.wait();
+        console.log("USDT transfer successfully");
+      } else if (coin === "USDC") {
+        amountToSend = ethers.utils.parseUnits(depositAmount, 6);
+      }
 
       axios
         .post("http://localhost:3130/api/user/deposit", {
-          user: userId,
+          userId,
           from: address,
           amount: depositAmount,
           depositAddress,
+          coin,
         })
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
         })
         .catch((err) => console.log(err));
     } catch (error) {
@@ -168,6 +223,25 @@ const Deposit = () => {
               type="number"
               onChange={(e) => setDepositAmount(e.target.value)}
             />
+            <FormControl sx={{ minWidth: 120 }}>
+              <InputLabel id="demo-controlled-open-select-label">
+                Coin
+              </InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={coin}
+                label="Coin"
+                onChange={handleChange}
+              >
+                <MenuItem value="ETH">ETH</MenuItem>
+                <MenuItem value="USDT">USDT</MenuItem>
+                <MenuItem value="USDC">USDC</MenuItem>
+              </Select>
+            </FormControl>
             <Button variant="outlined" onClick={handleDeposit}>
               Submit
             </Button>
@@ -236,7 +310,7 @@ const Depositer = styled(Box)(({ theme }) => ({
 const USDT = () => {
   const { data, isError, isLoading } = useBalance({
     address: "0xbF9adc33683De9D652031683F265558024380deD",
-    token: "0x94829DD28aE65bF4Ff6Ce3A687B1053eC7229272",
+    token: "0xD8b1aBE335da70008E9BE01d2fE3f01Cc5808359",
   });
 
   if (isLoading) return <div>Fetching balance…</div>;

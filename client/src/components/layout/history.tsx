@@ -45,7 +45,7 @@ interface Data {
   method: string;
   from: string;
   to: string;
-  amount: number;
+  amount: string;
   createdAt: string;
 }
 
@@ -53,7 +53,7 @@ interface Item {
   method: string;
   from: string;
   to: string;
-  amount: number;
+  amount: string;
   createdAt: string;
 }
 
@@ -61,7 +61,7 @@ function createData(
   method: string,
   from: string,
   to: string,
-  amount: number,
+  amount: string,
   createdAt: string
 ): Data {
   return { method, from, to, amount, createdAt };
@@ -70,7 +70,7 @@ function createData(
 const History = () => {
   const [rows, setRows] = React.useState<Item[]>([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(7);
 
   React.useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -167,7 +167,7 @@ const History = () => {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
+              rowsPerPageOptions={[7]}
               component="div"
               count={rows.length}
               rowsPerPage={rowsPerPage}

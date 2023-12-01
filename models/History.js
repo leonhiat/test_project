@@ -18,7 +18,7 @@ const HistorySchema = new Schema(
       type: String,
     },
     amount: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
